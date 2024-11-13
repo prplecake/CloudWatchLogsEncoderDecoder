@@ -1,0 +1,64 @@
+﻿@page "/"
+@using CloudWatchLogsEncoderDecoder.Web.Services
+@inject ClipboardService ClipboardService
+
+@code {
+    public string? Input { get; set; }
+    public string Result { get; set; } = "";
+    public string TryItMessage { get; set; }
+    const string ExampleInput = "H4sIAAAAAAAAAHWPwQqCQBCGX0Xm7EFtK+smZBEUgXoLCdMhFtKV3akI8d0bLYmibvPPN3wz00CJxmQnTO41whwWQRIctmEcB6sQbFC3CjW3XW8kxpOpP+OC22d1Wml1qZkQGtoMsScxaczKN3plG8zlaHIta5KqWsozoTYw3/djzwhpLwivWFGHGpAFe7DL68JlBUk+l7KSN7tCOEJ4M3/qOI49vMHj+zCKdlFqLaU2ZHV2a4Ct/an0/ivdX8oYc1UVX860fQDQiMdxRQEAAA==";
+    private string Encode(string input) => Convert.ToBase64String(Gzip.Zip(input));
+    private string Decode(string input) => Gzip.Unzip(Convert.FromBase64String(input));
+    private void EncodeHandler() => Result = Encode(Input ?? "");
+    private void DecodeHandler() => Result = Decode(Input ?? "");
+    private async void CopyToClipboard()
+    {
+      await ClipboardService.CopyToClipboard(Result);
+    }
+    private void TryItHandler()
+    {
+      Result = "";
+      Input = ExampleInput;
+      TryItMessage = "Now click 'Decode' to see the result.";
+    }
+    private void ToggleExampleDisclosure()
+    {
+      Input = "";
+      Result = "";
+      TryItMessage = "";
+    }
+}
+
+<PageTitle>CloudWatch Log Encoding</PageTitle>
+
+<div class="wrapper">
+  <div class="content">
+    <h1>CloudWatch Logs Encoder/Decoder</h1>
+
+    <p>AWS CloudWatch logs get gzipped and base64-encoded before being sent to a lambda handler.</p>
+    <p>Here you can easily test by encoding and decoding your data.</p>
+
+    <details @ontoggle="ToggleExampleDisclosure">
+      <summary>Example</summary>
+      <pre>@ExampleInput</pre>
+      <p>becomes</p>
+      <pre>{"messageType":"DATA_MESSAGE","owner":"123456789123","logGroup":"testLogGroup","logStream":"testLogStream","subscriptionFilters":["testFilter"],"logEvents":[{"id":"eventId1","timestamp":1440442987000,"message":"[ERROR] First test message"},{"id":"eventId2","timestamp":1440442987001,"message":"[ERROR] Second test message"}]}</pre>
+      <button @onclick="TryItHandler">Try it</button>
+      <p>@TryItMessage</p>
+    </details>
+
+    <InputTextArea
+      @bind-Value="Input"
+      Placeholder="Enter text to encode or decode"
+      rows="10"
+      cols="50"/><br/>
+    <button @onclick="EncodeHandler">Encode</button>
+    <button @onclick="DecodeHandler">Decode</button>
+
+    <div class="result">
+      <pre>@Result</pre>
+      <button @onclick="CopyToClipboard">Copy to clipboard</button>
+    </div>
+  </div>
+  <footer class="footer">by <a target="_blank" href="https://github.com/prplecake">@("@prplecake")</a></footer>
+</div>

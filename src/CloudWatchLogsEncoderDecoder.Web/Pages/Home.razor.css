@@ -1,0 +1,30 @@
+﻿pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.content {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.footer {
+    text-align: right;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+div.result {
+    margin: 0 auto;
+}

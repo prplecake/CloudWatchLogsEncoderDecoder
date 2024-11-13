@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudWatchLogsEncoderDecoder.Web", "src\CloudWatchLogsEncoderDecoder.Web\CloudWatchLogsEncoderDecoder.Web.csproj", "{3C830B0E-B60B-4988-8077-89AC9F3A23FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{217D117A-5851-406A-B627-073946CCB598}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9E31C1E3-EF6D-44B8-9C48-8E51B8F12F83}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub CI", "GitHub CI", "{1940D49D-07D7-4448-8414-DCF21FAB211E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\deploy.yml = .github\workflows\deploy.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C830B0E-B60B-4988-8077-89AC9F3A23FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C830B0E-B60B-4988-8077-89AC9F3A23FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C830B0E-B60B-4988-8077-89AC9F3A23FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C830B0E-B60B-4988-8077-89AC9F3A23FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C830B0E-B60B-4988-8077-89AC9F3A23FB} = {9E31C1E3-EF6D-44B8-9C48-8E51B8F12F83}
+		{1940D49D-07D7-4448-8414-DCF21FAB211E} = {217D117A-5851-406A-B627-073946CCB598}
+	EndGlobalSection
+EndGlobal
