@@ -8,7 +8,17 @@
     public string TryItMessage { get; set; }
     const string ExampleInput = "H4sIAAAAAAAAAHWPwQqCQBCGX0Xm7EFtK+smZBEUgXoLCdMhFtKV3akI8d0bLYmibvPPN3wz00CJxmQnTO41whwWQRIctmEcB6sQbFC3CjW3XW8kxpOpP+OC22d1Wml1qZkQGtoMsScxaczKN3plG8zlaHIta5KqWsozoTYw3/djzwhpLwivWFGHGpAFe7DL68JlBUk+l7KSN7tCOEJ4M3/qOI49vMHj+zCKdlFqLaU2ZHV2a4Ct/an0/ivdX8oYc1UVX860fQDQiMdxRQEAAA==";
     private string Encode(string input) => Convert.ToBase64String(Gzip.Zip(input));
-    private string Decode(string input) => Gzip.Unzip(Convert.FromBase64String(input));
+    private string Decode(string input)
+    {
+      try
+      {
+        return Gzip.Unzip(Convert.FromBase64String(input));
+      }
+      catch (FormatException)
+      {
+        return "";
+      }
+    }
     private void EncodeHandler() => Result = Encode(Input ?? "");
     private void DecodeHandler() => Result = Decode(Input ?? "");
     private async void CopyToClipboard()
