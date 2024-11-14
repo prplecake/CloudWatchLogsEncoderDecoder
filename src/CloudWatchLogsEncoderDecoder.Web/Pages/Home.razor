@@ -24,6 +24,7 @@
     private void DecodeHandler() => Result = Decode(Input ?? "");
     private async void CopyToClipboardHandler()
     {
+      if (string.IsNullOrWhiteSpace(Result)) return;
       await ClipboardService.CopyToClipboard(Result);
       CopyToClipboardButtonText = "Copied!";
       StateHasChanged();
