@@ -6,6 +6,7 @@
     public string? Input { get; set; }
     public string Result { get; set; } = "";
     public string TryItMessage { get; set; }
+    public string CopyToClipboardButtonText = "Copy to clipboard";
     const string ExampleInput = "H4sIAAAAAAAAAHWPwQqCQBCGX0Xm7EFtK+smZBEUgXoLCdMhFtKV3akI8d0bLYmibvPPN3wz00CJxmQnTO41whwWQRIctmEcB6sQbFC3CjW3XW8kxpOpP+OC22d1Wml1qZkQGtoMsScxaczKN3plG8zlaHIta5KqWsozoTYw3/djzwhpLwivWFGHGpAFe7DL68JlBUk+l7KSN7tCOEJ4M3/qOI49vMHj+zCKdlFqLaU2ZHV2a4Ct/an0/ivdX8oYc1UVX860fQDQiMdxRQEAAA==";
     private string Encode(string input) => Convert.ToBase64String(Gzip.Zip(input));
     private string Decode(string input)
@@ -21,9 +22,16 @@
     }
     private void EncodeHandler() => Result = Encode(Input ?? "");
     private void DecodeHandler() => Result = Decode(Input ?? "");
-    private async void CopyToClipboard()
+    private async void CopyToClipboardHandler()
     {
       await ClipboardService.CopyToClipboard(Result);
+      CopyToClipboardButtonText = "Copied!";
+      StateHasChanged();
+      _ = new Timer(_ =>
+      {
+        CopyToClipboardButtonText = "Copy to clipboard";
+        StateHasChanged();
+      }, null, 3000, Timeout.Infinite);
     }
     private void TryItHandler()
     {
@@ -67,7 +75,7 @@
 
     <div class="result">
       <pre>@Result</pre>
-      <button @onclick="CopyToClipboard">Copy to clipboard</button>
+      <button @onclick="CopyToClipboardHandler">@CopyToClipboardButtonText</button>
     </div>
   </div>
   <footer class="footer">by <a target="_blank" href="https://github.com/prplecake">@("@prplecake")</a></footer>
