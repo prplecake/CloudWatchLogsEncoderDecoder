@@ -1,0 +1,31 @@
+/* /Pages/Home.razor.rz.scp.css */
+pre[b-lbj0aoo0t7] {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: anywhere;       /* Internet Explorer 5.5+ */
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.wrapper[b-lbj0aoo0t7] {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.content[b-lbj0aoo0t7] {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.footer[b-lbj0aoo0t7] {
+    text-align: right;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+div.result[b-lbj0aoo0t7] {
+    margin: 0 auto;
+}
