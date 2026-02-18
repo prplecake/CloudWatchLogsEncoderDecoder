@@ -46,6 +46,10 @@
       Result = "";
       TryItMessage = "";
     }
+    private void ClearInputHandler()
+    {
+      Input = "";
+    }
 }
 
 <PageTitle>CloudWatch Log Encoding</PageTitle>
@@ -73,6 +77,7 @@
       cols="40"/><br/>
     <button @onclick="EncodeHandler">Encode</button>
     <button @onclick="DecodeHandler">Decode</button>
+    <button @onclick="ClearInputHandler">Clear</button>
 
     <div class="result">
       <pre>@Result</pre>
